@@ -6,9 +6,10 @@ import (
 )
 
 type UrlRepository interface {
-	Insert(model domain.UrlModel) (uint, error)
+	Insert(model *domain.UrlModel) (uint, error)
 	GetByToken(token string) (domain.UrlModel, error)
-	Update(model domain.UrlModel) error
+	Update(model *domain.UrlModel) error
+	GetByOriginalUrl(url string) (domain.UrlModel, error)
 }
 
 type Repository struct {

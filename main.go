@@ -15,11 +15,7 @@ import (
 
 func main() {
 
-	conf, err := config.Init()
-	if err != nil {
-		log.Fatalf("Could not load config: %e\n", err)
-		return
-	}
+	conf := config.Init()
 
 	dsn := url.URL{
 		Scheme:   "postgres",

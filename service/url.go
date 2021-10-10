@@ -19,18 +19,24 @@ func (s urlService) GetUrlByToken(token string) (domain.UrlModel, error) {
 }
 
 func (s urlService) Shorten(url string) (domain.UrlModel, error) {
+
+	m, err := s.repository.UrlRepository.GetByOriginalUrl(url)
+	if err == nil {
+		return m, nil
+	}
+
 	model := domain.UrlModel{
 		OriginalUrl: url,
 		Token:       utils.RandomString(8),
 		Views:       0,
 	}
 
-	id, err := s.repository.UrlRepository.Insert(model)
+	id, err := s.repository.UrlRepository.Insert(&model)
 	model.ID = id
 
 	return model, err
 }
 
 func (s urlService) Update(model domain.UrlModel) error {
-	return s.repository.UrlRepository.Update(model)
+	return s.repository.UrlRepository.Update(&model)
 }

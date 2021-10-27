@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: url_shortener
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      - PG_HOST=postgres
+      - PG_USER=admin
+      - PG_PASS=strong_and_complicated
+      - PG_PORT=5432
+      - PG_NAME=ups_url_shortener
+
+  db:
+    image: 'postgres:latest'
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=strong_and_complicated
+      - POSTGRES_DB=ups_url_shortener
+

@@ -20,7 +20,7 @@ func (h *Handler) HandleShorten(c *gin.Context) {
 		return
 	}
 
-	c.JSON(201, map[string]string{"shortened_url": fmt.Sprintf("https://kyeeego.dev/%s\n", model.Token)})
+	c.JSON(201, map[string]string{"shortened_url": fmt.Sprintf("https://kyeeego.dev/%s", model.Token)})
 }
 
 func (h *Handler) HandleRedirect(c *gin.Context) {
@@ -29,6 +29,7 @@ func (h *Handler) HandleRedirect(c *gin.Context) {
 	model, err := h.services.UrlService.GetUrlByToken(token)
 	if err != nil {
 		c.JSON(404, map[string]error{"error": err})
+		return
 	}
 
 	model.Views++

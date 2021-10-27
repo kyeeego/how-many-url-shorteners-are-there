@@ -17,6 +17,7 @@ type Repository struct {
 }
 
 func New(db *gorm.DB) *Repository {
+	db.AutoMigrate(&domain.UrlModel{})
 	return &Repository{
 		UrlRepository: newUrlRepository(db),
 	}

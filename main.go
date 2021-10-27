@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/url"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/kyeeego/how-many-url-shorteners-are-there/config"
@@ -9,8 +12,6 @@ import (
 	"github.com/kyeeego/how-many-url-shorteners-are-there/repository"
 	"github.com/kyeeego/how-many-url-shorteners-are-there/server"
 	"github.com/kyeeego/how-many-url-shorteners-are-there/service"
-	"log"
-	"net/url"
 )
 
 func main() {
